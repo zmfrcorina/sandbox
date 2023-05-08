@@ -1,0 +1,17 @@
+{
+    "name": "TourismSite",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "Andreea",
+    "contributors": [],
+    "dependencies": {
+        "@popperjs/core": "^2.11.7",
+        "bootstrap": "^5.2.3"
+    }
+}

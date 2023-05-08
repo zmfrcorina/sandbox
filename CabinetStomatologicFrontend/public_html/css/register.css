@@ -1,0 +1,27 @@
+input{
+    height: 10px;
+    margin: 5px 5px 5px 5px ;
+}
+.save_info{
+    background-color: green;
+    /*height: 15px;
+    border-radius: 5px;
+    color: white;
+    */
+    color: #fff;
+    outline: none;
+    text-transform: uppercase;
+    padding: 1.2em;
+    letter-spacing: 0.1em;
+    margin: 2em;
+    font-weight: bold;   
+    border-radius: 0.4em;
+}
+.valid {
+    background-color: green;
+}
+
+.invalid {
+    background-color: #D11919;
+    color: #eeff41;
+}

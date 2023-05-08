@@ -1,0 +1,107 @@
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h2>Users</h2>
+
+
+
+    <button type="button" class="btn btn-info btn-default btn-sm" data-toggle="modal" data-target="#myModal" id="edit_bttn">
+        <span class="glyphicon glyphicon-pencil"></span> Edit     
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit user</h4>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <form id="chage_profile_form">
+                        
+                        <div class="form-group">
+                            <label for='userId'>User's id:   </label> 
+                            <input type="text" class="form-control"  id='userIdEdit' readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for='userType' >User's type:   </label> 
+                            <input type="text" class="form-control"  id='usersTypeEdit'>
+                        </div>
+                        <div class="form-group">
+                            <label for='firstName' >First name:   </label> 
+                            <input type="text" class="form-control"  id='firstNameEdit' >
+                        </div>
+                        <div class="form-group">
+                            <label for='lastName' >Last name:   </label> 
+                            <input type="text" class="form-control"  id='lastNameEdit' >
+                        </div>
+                        <div class="form-group">
+
+                            <label for='userName' >User name:  </label> 
+                            <input type="text" class="form-control" id='userNameEdit' >
+                        </div>
+                        <div class="form-group">
+                            <label for='email' >Email:    </label>
+                            <input type="text" class="form-control"  id='emailEdit'>
+                        </div>
+                        <div class="form-group">
+                            <label for='phoneNum' >Phone number: </label>
+                            <input type="text" class="form-control"   id='phone_numEdit'>
+                        </div>
+                        <div class="form-group">
+                            <label for='password' >Password: </label>
+                            <input type="text" class="form-control"   id='passEdit' readonly="readonly">
+                        </div> <div id='status'></div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" data-dismiss="modal" id="submit_edited_user">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-default btn-sm" id="del_bttn">
+        <span class="glyphicon glyphicon-trash"></span> Delete 
+    </button>
+    <table class="table table-striped" id="table_users">
+        <thead>
+            <tr>
+                <th>User id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>User name</th>
+
+                <th>User's type</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Password</th>
+                <!--                <th>Edit</th>
+                                <th>Delete</th>-->
+            </tr>
+        </thead>
+        <tbody id='users_table'>
+
+
+        </tbody>
+    </table>
+</div>
+<!--
+
+<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>-->

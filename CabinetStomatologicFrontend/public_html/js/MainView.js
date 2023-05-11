@@ -10,7 +10,7 @@ MainView.prototype = {
         // this.onMainMenuItem();
         // this.onNavItem();
         //var verify = new Verify();
-        this.verifyUserType();  
+        this.verifyUserType();
 
     },
     attachListeners: function () {
@@ -33,7 +33,7 @@ MainView.prototype = {
         var user = window.localStorage.getItem('userType');
         if (user == 'user' || user == '')
             $('#users').addClass('.display_class');
-        if(user == 'admin')
+        if (user == 'admin')
             $('#users').removeClass('.display_class');
 
     },
@@ -51,6 +51,9 @@ MainView.prototype = {
                     home.onHomePopulate();
                 });
                 break;
+            case 'aboutUs':
+                $('#id_for_main').load('aboutUs.html');
+                break;
             case 'offers':
                 $('#id_for_main').load('offers.html', function () {
                     var offers = new OffersView();
@@ -61,24 +64,24 @@ MainView.prototype = {
                 $('#id_for_main').load('contact.html');
                 break;
             case 'users':
-            {
-                var user = window.localStorage.getItem('userType');
-                if (user == 'admin')
-                    $('#id_for_main').load('users.html', function () {
-                        var users = new UsersView();
-                        users.onAllUsersPopulate();
-                    });
-                break;
-            }
+                {
+                    var user = window.localStorage.getItem('userType');
+                    if (user == 'admin')
+                        $('#id_for_main').load('users.html', function () {
+                            var users = new UsersView();
+                            users.onAllUsersPopulate();
+                        });
+                    break;
+                }
             case 'bttn1':
-            {
-                var user = window.localStorage.getItem('userType');
-                $('#id_for_main').load('myProfile.html', function () {
-                    var myProfile = new MyProfile();
-                });
-                //    window.location.href = "login.html";
-                break;
-            }
+                {
+                    var user = window.localStorage.getItem('userType');
+                    $('#id_for_main').load('myProfile.html', function () {
+                        var myProfile = new MyProfile();
+                    });
+                    //    window.location.href = "login.html";
+                    break;
+                }
             case 'bttn2':
                 var logOut = new Logout();
                 window.location.href = "login.html";
@@ -102,7 +105,7 @@ $(document).ready(function () {
 
 /* getDestAPI: function () {
  var retApi = new MainApp();
- var hostName = 'http://localhost:57312'; //window.location.protocol + "//" + window.location.host;    
+ var hostName = 'http://localhost:57312'; //window.location.protocol + "//" + window.location.host;
  retApi.setBaseURL(hostName);
  return retApi;
  },

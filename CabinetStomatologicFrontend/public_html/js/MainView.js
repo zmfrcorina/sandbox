@@ -54,11 +54,8 @@ MainView.prototype = {
             case 'aboutUs':
                 $('#id_for_main').load('aboutUs.html');
                 break;
-            case 'offers':
-                $('#id_for_main').load('offers.html', function () {
-                    var offers = new OffersView();
-                    offers.onAllPackagesPopulate();
-                });
+            case 'dentalServices':
+                $('#id_for_main').load('dentalServices.html');
                 break;
             case 'contact':
                 $('#id_for_main').load('contact.html');

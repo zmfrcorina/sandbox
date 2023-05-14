@@ -38,16 +38,16 @@ namespace CabinetStomatologic.Controllers
         }
 
         [Route("api/users/{username}")]
-        [ResponseType(typeof(Package))]
+        [ResponseType(typeof(User))]
         public IHttpActionResult GetUserByUsername(string username)
         {
-            IEnumerable<User> user = db.User.Where(pk => pk.UserNane == username);
-            if (user == null)
+            IEnumerable<User> users = db.User.Where(pk => pk.UserNane == username);
+            if (users == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(users);
         }
 
         [Route("api/users/get/{userId}")]

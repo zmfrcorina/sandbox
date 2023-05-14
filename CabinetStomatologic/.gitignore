@@ -2,6 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/CabinetStomatologic/.vs/CabinetStomatologic/
-/CabinetStomatologic/bin/
-/CabinetStomatologic/obj/Debug/
+.vs
+bin/
+obj/

@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using TourismApiWAD.Models;
-using System.Web.Http.Cors;
+using CabinetStomatologic.Models;
 
-namespace TourismApiWAD.Controllers
+namespace CabinetStomatologic.Controllers
 {
 
     public class BooksController : ApiController
     {
-        private TourismApiWADContext db = new TourismApiWADContext();
+        private CabinetStomatologicContext db = new CabinetStomatologicContext();
 
         // GET: api/Books
         public IQueryable<Book> GetBook()

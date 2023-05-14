@@ -81,7 +81,7 @@ PackageView.prototype = {
 // AJAX code to submit form.
             $.ajax({
                 headers: {
-                    'Accept': 'appli    cation/json',
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 type: "POST",
@@ -113,7 +113,7 @@ PackageView.prototype = {
         var userId = window.localStorage.getItem('userId');//get from token
         // var tripItinerariumId = this.onTableSelect();//get from dropdown
         var tripId = window.localStorage.getItem('idTrip');
-        var obj = {"UserId": userId, "TripItinerariumId": 1};//update with tripId CZEARA
+        var obj = {"UserId": userId, "TripItinerariumId": 1};//update with tripId CEZARA
 
         $.ajax({
             headers: {

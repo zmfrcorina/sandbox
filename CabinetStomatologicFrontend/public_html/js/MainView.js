@@ -60,6 +60,12 @@ MainView.prototype = {
             case 'contact':
                 $('#id_for_main').load('contact.html');
                 break;
+            case 'appointments':
+                $('#id_for_main').load('appointments.html', function () {
+                    var appointments = new AppointmentsView();
+                    appointments.onAppointmentsPopulate();
+                });
+                break;
             case 'users':
                 {
                     var user = window.localStorage.getItem('userType');

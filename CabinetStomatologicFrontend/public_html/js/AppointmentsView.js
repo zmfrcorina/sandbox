@@ -8,7 +8,7 @@ AppointmentsView.prototype = {
   },
   attachListeners: function () {
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
-    $('#date').on('change', $.proxy(this.onDate, this));
+    $('#date').on('change', $.proxy(this.onDateChanged, this));
     //UPDATE FOR APPOINTMENTS TO REMOVE CANCELLATION
     $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
     $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
@@ -21,7 +21,7 @@ AppointmentsView.prototype = {
       document.getElementById("email").value = "";
       document.getElementById("phone").value = "";
     }
-    else
+    else {
       $.ajax({
         type: "GET",
         url: "http://localhost:57312/api/users/" + userName,
@@ -34,6 +34,37 @@ AppointmentsView.prototype = {
           });
         }
       });
+
+      $('#date').val("");
+
+      var timeDropdown = document.getElementById("time");
+      //clear children
+      while (timeDropdown.firstChild) {
+        timeDropdown.removeChild(timeDropdown.firstChild);
+      }
+    }
+  },
+  onDateChanged: function () {
+    var timeDropdown = document.getElementById("time");
+
+    //clear children
+    while (timeDropdown.firstChild) {
+      timeDropdown.removeChild(timeDropdown.firstChild);
+    }
+
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:57312/api/freeAppointments/" + $('#date').val(),
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        $.each(data, function () {
+          const option = document.createElement("option");
+          option.textContent = this;
+          timeDropdown.appendChild(option);
+        });
+      }
+    });
   },
   onSubmitButton: function () {
     var userName = window.localStorage.getItem('username');
@@ -76,6 +107,7 @@ AppointmentsView.prototype = {
         success: function () {
           console.log('appointment updated successfully');
           document.getElementById("status-header").innerHTML = "Programare facută cu succes!";
+          this.onAppointmentsPopulate();
         },
         error: function () {
           console.log('error updating appointment');
@@ -86,27 +118,5 @@ AppointmentsView.prototype = {
       window.localStorage.setItem('username', userName);
       this.onAppointmentsPopulate();
     }
-  },
-  onDate: function () {
-    const timeDropdown = document.getElementById("time");
-
-    //clear children
-    while (timeDropdown.firstChild) { // check if there is a first child
-      timeDropdown.removeChild(timeDropdown.firstChild); // remove the first child
-    }
-
-    $.ajax({
-      type: "GET",
-      url: "http://localhost:57312/api/freeAppointments/" + $('#date').val(),
-      dataType: "json",
-      async: false,
-      success: function (data) {
-        $.each(data, function () {
-          const option = document.createElement("option");
-          option.textContent = this;
-          timeDropdown.appendChild(option);
-        });
-      }
-    });
   }
 };

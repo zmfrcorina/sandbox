@@ -8,33 +8,20 @@ AppointmentsView.prototype = {
   },
   attachListeners: function () {
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
+    $('#date').on('change', $.proxy(this.onDateChanged, this));
     //UPDATE FOR APPOINTMENTS TO REMOVE CANCELLATION
     $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
     $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
 
   },
   onAppointmentsPopulate: function () {
-
-    // Define array of time slots
-    const timeSlots = ["9:00 AM", "10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
-
-    // Get the time dropdown element
-    const timeDropdown = document.getElementById("time");
-
-    // Populate the time dropdown with options from the timeSlots array
-    for (let i = 0; i < timeSlots.length; i++) {
-      const option = document.createElement("option");
-      option.textContent = timeSlots[i];
-      timeDropdown.appendChild(option);
-    }
-
     var userName = window.localStorage.getItem('username');
     if (userName == null) {
       document.getElementById("name").value = "";
       document.getElementById("email").value = "";
       document.getElementById("phone").value = "";
     }
-    else
+    else {
       $.ajax({
         type: "GET",
         url: "http://localhost:57312/api/users/" + userName,
@@ -47,11 +34,44 @@ AppointmentsView.prototype = {
           });
         }
       });
+
+      $('#date').val("");
+
+      var timeDropdown = document.getElementById("time");
+      //clear children
+      while (timeDropdown.firstChild) {
+        timeDropdown.removeChild(timeDropdown.firstChild);
+      }
+    }
+  },
+  onDateChanged: function () {
+    var timeDropdown = document.getElementById("time");
+
+    //clear children
+    while (timeDropdown.firstChild) {
+      timeDropdown.removeChild(timeDropdown.firstChild);
+    }
+
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:57312/api/freeAppointments/" + $('#date').val(),
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        $.each(data, function () {
+          const option = document.createElement("option");
+          option.textContent = this;
+          timeDropdown.appendChild(option);
+        });
+      }
+    });
   },
   onSubmitButton: function () {
     var userName = window.localStorage.getItem('username');
     var userId;
-    if (userName == null) { }
+    if (userName == null) {
+
+    }
     else {
       $.ajax({
         type: "GET",
@@ -59,7 +79,7 @@ AppointmentsView.prototype = {
         dataType: "json",
         async: false,
         success: function (data) {
-            userId = data[0].UserId;
+          userId = data[0].UserId;
         }
       });
     }
@@ -86,14 +106,17 @@ AppointmentsView.prototype = {
         data: JSON.stringify(obj),
         success: function () {
           console.log('appointment updated successfully');
+          document.getElementById("status-header").innerHTML = "Programare facută cu succes!";
+          this.onAppointmentsPopulate();
         },
         error: function () {
           console.log('error updating appointment');
+          document.getElementById("status-header").innerHTML = "Programarea a eșuat!";
         }
       });
       localStorage.removeItem('username');
       window.localStorage.setItem('username', userName);
       this.onAppointmentsPopulate();
     }
-  },
+  }
 };

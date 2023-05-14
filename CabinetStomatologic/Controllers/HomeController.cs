@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Http.Cors;
 
-namespace TourismApiWAD.Controllers
+namespace CabinetStomatologic.Controllers
 {
 
     public class HomeController : Controller

@@ -8,15 +8,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using TourismApiWAD.Models;
+using CabinetStomatologic.Models;
 using System.Web.Http.Cors;
 
-namespace TourismApiWAD.Controllers
+namespace CabinetStomatologic.Controllers
 {
 
     public class OffersController : ApiController
     {
-        private TourismApiWADContext db = new TourismApiWADContext();
+        private CabinetStomatologicContext db = new CabinetStomatologicContext();
 
         // GET: api/Offers
         public IQueryable<Offer> GetOffer()

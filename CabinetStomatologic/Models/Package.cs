@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 
-namespace TourismApiWAD.Models
+namespace CabinetStomatologic.Models
 {
     public class Package
     {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 
 
-namespace TourismApiWAD.Models
+namespace CabinetStomatologic.Models
 {
     public class TripItinerarium
     {

@@ -15,6 +15,7 @@ namespace CabinetStomatologic.Controllers
     public class AppointmentsController : ApiController
     {
         private CabinetStomatologicContext db = new CabinetStomatologicContext();
+        string[] timeSlots = { "9:00 AM", "10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM" };
 
         // GET: api/Appointments
         public IQueryable<Appointment> GetAppointment()
@@ -26,6 +27,24 @@ namespace CabinetStomatologic.Controllers
         public IHttpActionResult GetAppointments()
         {
             return Ok();
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(string[]))]
+        [Route("api/freeAppointments/{date}")]
+        public IHttpActionResult GetFreeAppointments(DateTime date)
+        {
+            IEnumerable<Appointment> appointmnets = db.Appointment.Where(it => it.Date == date).ToArray();
+            var usedHours = appointmnets.Select(q => q.Time).ToArray();
+            var freeHours = timeSlots.Except(usedHours).ToArray();
+
+            if (appointmnets == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(freeHours);
+
         }
 
         [HttpGet]

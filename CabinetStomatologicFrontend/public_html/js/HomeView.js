@@ -33,6 +33,9 @@ HomeView.prototype = {
         }
         if (user === 'admin') {
             document.getElementById("appointments_button").innerHTML = "Vizualizare programari";
+            
+            const appointmentsMenuItem = document.getElementById('appointments');
+            appointmentsMenuItem.querySelector('a').textContent = 'Vizualizare programari';
         }
     },
     onAppointmentsButton: function () {
@@ -41,7 +44,7 @@ HomeView.prototype = {
             $('#id_for_main').load('adminView.html', function () {
                 var adminV = new AdminView();
                 adminV.onAdminPopulate();
-            }); 
+            });
         }
         else {
             $('#id_for_main').load('appointments.html', function () {

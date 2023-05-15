@@ -61,10 +61,19 @@ MainView.prototype = {
                 $('#id_for_main').load('contact.html');
                 break;
             case 'appointments':
-                $('#id_for_main').load('appointments.html', function () {
-                    var appointments = new AppointmentsView();
-                    appointments.onAppointmentsPopulate();
-                });
+                var user = window.localStorage.getItem('userType');
+                if (user == 'admin') {
+                    $('#id_for_main').load('adminView.html', function () {
+                        var adminV = new AdminView();
+                        adminV.onAdminPopulate();
+                    });
+                }
+                else {
+                    $('#id_for_main').load('appointments.html', function () {
+                        var appointments = new AppointmentsView();
+                        appointments.onAppointmentsPopulate();
+                    });
+                }
                 break;
             case 'users':
                 {

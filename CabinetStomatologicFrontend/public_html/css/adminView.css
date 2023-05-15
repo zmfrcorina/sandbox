@@ -11,6 +11,10 @@ body {
     background-color: #f5f5f5;
 }
 
+input[type="date"] {
+    color: black;
+}
+
 header {
     background-color: #272424;
     color: #fff;
@@ -22,7 +26,8 @@ button {
     color: black;
 }
 
-h1, h2 {
+h1,
+h2 {
     margin: 0;
 }
 

@@ -1,22 +1,24 @@
 body {
-    font: 14px/24px"Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
-    display: block;
+    font: 14px/24px "Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-main{
+
+main {
     width: 90%;
     min-height: 400px;
     position: relative;
-    margin: 100px auto 100px auto;
+    text-align: left;
 }
+
 #login {
     position: relative;
     width: 100%;
-    float: left;
+    float: none;
 }
 
-#login_with {
-    display: none; /* Hide the login with section */
-}
 #divide {
     position: absolute;
     top: 120px;
@@ -25,15 +27,17 @@ main{
     background-color: white;
     text-align: center;
 }
+
 ul {
     list-style-type: none;
     margin: 0 auto;
     width: 400px;
     padding: 0;
 }
+
 li {
     text-align: center;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
 }
 
 label {
@@ -41,14 +45,18 @@ label {
     color: gray;
     font-size: 1.1em;
     margin-top: 0.6em;
-    margin-left: 0 auto 0 auto;
+    text-align: left;
+    width: 300px;
 }
-input[type="text"],input[type="password"]{
+
+input[type="text"],
+input[type="password"] {
     border: 0.1em solid darken(#eee, 6%);
     padding: 1em;
-    margin: 0 auto 0 auto;
-    /* float: left; */
-    width: 300px;
+    margin: 0;
+    display: block;
+    width: 400px;
+    box-sizing: border-box;
 }
 
 input[type="button"] {
@@ -58,74 +66,88 @@ input[type="button"] {
     text-transform: uppercase;
     padding: 1.2em;
     letter-spacing: 0.1em;
-    margin: 2em;
+    margin: 2em auto;
     font-weight: bold;
     border-radius: 0.4em;
 }
+
 #register_button {
     background-color: green;
     margin-left: 0;
-
 }
+
 #login_button:hover {
     background-color: #3366CC;
 }
+
 #register_button:hover {
     background-color: #33CC33;
 }
-input[type="text"]:focus,input[type="password"]:focus{
+
+input[type="text"]:focus,
+input[type="password"]:focus {
     border-radius: 0.4em;
 }
+
 .text {
     margin: 10px 0 0 0;
 }
+
 .alert-icon {
-    background:  url("http://www.northeast360.co.uk/images/red_exclamation_icon.png") center;
-    width:40px;
-    height:40px;
+    background: url("http://www.northeast360.co.uk/images/red_exclamation_icon.png") center;
+    width: 40px;
+    height: 40px;
     display: block;
     float: right;
 }
-.login_list li {display: inline-block;
+
+.login_list li {
+    display: inline-block;
 }
-.block { display: block !important;}
+
+.block {
+    display: block !important;
+}
+
 .hide {
-    display:none;
+    display: none;
 }
+
 .alert-icon:hover {
     z-index: 10;
 }
+
 .li_kendo {
     display: block !important;
-
 }
+
 h3 {
     font-size: 30px;
     text-align: center;
 }
-#li_bttn_log_reg{
+
+#li_bttn_log_reg {
     margin-top: 5%;
-    float: left;
+    float: none;
 }
-input{
+
+input {
     height: 10px;
-    margin: 5px 5px 5px 5px ;
+    margin: 5px;
 }
-.save_info{
+
+.save_info {
     background-color: green;
-    /*height: 15px;
-    border-radius: 5px;
-    color: white;
-    */
     color: #fff;
     outline: none;
     text-transform: uppercase;
     padding: 1.2em;
     letter-spacing: 0.1em;
-    margin: 2em;
-    font-weight: bold;   
+    margin: 2em auto;
+    font-weight: bold;
     border-radius: 0.4em;
 }
+
 .valid {
     background-color: green;
 }

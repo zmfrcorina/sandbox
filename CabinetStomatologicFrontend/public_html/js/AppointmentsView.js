@@ -9,9 +9,8 @@ AppointmentsView.prototype = {
   attachListeners: function () {
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
     $('#date').on('change', $.proxy(this.onDateChanged, this));
-    $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
+    $('table').on('click', 'tr', $.proxy(this.getIdAppointment, this));
     $('#yes_bttn').on('click', $.proxy(this.deleteAppointment, this));
-
   },
   onAppointmentsPopulate: function () {
     var userName = window.localStorage.getItem('username');

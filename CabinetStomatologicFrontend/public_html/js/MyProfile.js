@@ -11,11 +11,10 @@ MyProfile.prototype = {
 
     attachListeners: function () {
         $('#save_changes_my_profile_bttn').on('click', $.proxy(this.onSaveButton, this));
-        $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
+        $('table').on('click', 'tr', $.proxy(this.getIdAppointment, this));
         $('#yes_bttn').on('click', $.proxy(this.deleteAppointment, this));
-
     },
-    getIdBooking: function (e) {
+    getIdAppointment: function (e) {
         if (typeof e !== 'undefined') {
             var id = $(e.currentTarget).attr('id');
             window.localStorage.setItem('idForCancelAppointment', id);

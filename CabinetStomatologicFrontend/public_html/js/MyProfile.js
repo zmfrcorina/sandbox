@@ -71,20 +71,20 @@ MyProfile.prototype = {
     deleteBooking: function () {
         var id = window.localStorage.getItem('idForCancelBooking');
         console.log(id);
+        var self = this;
         $.ajax({
             type: "DELETE",
             url: "http://localhost:57312/api/appointments/deleteAppointment/" + id,
 
             success: function () {
                 console.log('success');
+                self.refreshTable();
             },
             error: function () {
                 console.log('error');
             }
         });
         window.localStorage.removeItem('idForCancelBooking');
-
-        this.refreshTable();
     },
     onFormPopulate: function () {
         var userName = window.localStorage.getItem('username');

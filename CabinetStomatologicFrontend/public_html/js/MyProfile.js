@@ -10,22 +10,6 @@ MyProfile.prototype = {
     },
 
     attachListeners: function () {
-         // Get all the rows in the table
-         var rows = document.querySelectorAll('.table-highlight tbody tr');
-
-         // Add a click event listener to each row
-         rows.forEach(function (row) {
-             row.addEventListener('click', function () {
-                 // Remove the 'selected' class from all rows
-                 rows.forEach(function (row) {
-                     row.classList.remove('selected');
-                 });
-
-                 // Add the 'selected' class to the clicked row
-                 this.classList.add('selected');
-             });
-         });
-         
         $('#save_changes_my_profile_bttn').on('click', $.proxy(this.onSaveButton, this));
         $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
         $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
@@ -69,12 +53,27 @@ MyProfile.prototype = {
                     var elementU = document.getElementById("table_package_info_books");
                     elementU.appendChild(trU);
                 });
+
+                // Get all the rows in the table
+                var rows = document.querySelectorAll('.table-highlight tbody tr');
+
+                // Add a click event listener to each row
+                rows.forEach(function (row) {
+                    row.addEventListener('click', function () {
+                        // Remove the 'selected' class from all rows
+                        rows.forEach(function (row) {
+                            row.classList.remove('selected');
+                        });
+
+                        // Add the 'selected' class to the clicked row
+                        this.classList.add('selected');
+                    });
+                });
             },
             failure: function (response) {
                 alert(response.d);
             }
         });
-
     },
     refreshTable: function () {
         var table = document.getElementById("table_package_info_books");

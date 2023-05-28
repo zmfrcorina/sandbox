@@ -2,6 +2,7 @@ MyProfile = function () {
     this.initComponents();
     var arrayTripId = [];
 };
+
 MyProfile.prototype = {
     initComponents: function () {
         this.onFormPopulate();
@@ -74,6 +75,7 @@ MyProfile.prototype = {
             }
         });
     },
+
     refreshTable: function () {
         var table = document.getElementById("table_appointments");
         while (table.firstChild) {
@@ -81,6 +83,7 @@ MyProfile.prototype = {
         }
         this.populate(); // Call the populate function to add the elements again
     },
+
     deleteAppointment: function () {
         var id = window.localStorage.getItem('idForCancelAppointment');
         console.log(id);
@@ -99,6 +102,7 @@ MyProfile.prototype = {
         });
         window.localStorage.removeItem('idForCancelAppointment');
     },
+
     onFormPopulate: function () {
         var userName = window.localStorage.getItem('username');
         $.ajax({
@@ -119,6 +123,7 @@ MyProfile.prototype = {
             }
         });
     },
+    
     onSaveButton: function () {
         var userId = $('#userId').val();
         var userType = $('#usersType').val();

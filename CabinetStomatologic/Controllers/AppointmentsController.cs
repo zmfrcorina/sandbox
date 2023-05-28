@@ -11,7 +11,6 @@ using CabinetStomatologic.Models;
 
 namespace CabinetStomatologic.Controllers
 {
-
     public class AppointmentsController : ApiController
     {
         private CabinetStomatologicContext db = new CabinetStomatologicContext();
@@ -59,7 +58,6 @@ namespace CabinetStomatologic.Controllers
             }
 
             return Ok(freeHours);
-
         }
 
         [HttpGet]
@@ -141,8 +139,8 @@ namespace CabinetStomatologic.Controllers
                 db.SaveChanges();
             }
             catch (Exception ex)
-            { 
-            
+            {
+                throw;
             }
             return CreatedAtRoute("DefaultApi", new { id = appointment.AppointmentId }, appointment);
         }

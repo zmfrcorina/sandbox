@@ -7,7 +7,6 @@ using System.Web.Http.Cors;
 
 namespace CabinetStomatologic.Controllers
 {
-
     public class HomeController : Controller
     {
         public ActionResult Index()

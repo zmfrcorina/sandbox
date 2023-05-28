@@ -82,5 +82,4 @@ Login.prototype = {
 
 $(document).ready(function () {
     var login = new Login();
-
 });

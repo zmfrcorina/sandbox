@@ -50,7 +50,7 @@ MyProfile.prototype = {
                     trU.appendChild(td02);
                     trU.appendChild(td03);
 
-                    var elementU = document.getElementById("table_package_info_books");
+                    var elementU = document.getElementById("table_appointments");
                     elementU.appendChild(trU);
                 });
 
@@ -76,7 +76,7 @@ MyProfile.prototype = {
         });
     },
     refreshTable: function () {
-        var table = document.getElementById("table_package_info_books");
+        var table = document.getElementById("table_appointments");
         while (table.firstChild) {
             table.removeChild(table.firstChild);
         }

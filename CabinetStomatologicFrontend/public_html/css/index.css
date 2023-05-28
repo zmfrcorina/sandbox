@@ -1,7 +1,6 @@
 .float_right {
     padding-right: 300px;
     cursor: default;
-
 }
 
 .floating-box {
@@ -10,7 +9,6 @@
     height: 75px;
     margin: 0 10% 0 10%;
     cursor: default;
-
 }
 
 .img_class {
@@ -30,7 +28,6 @@
     text-align: center;
     padding: 10px 20px;
     cursor: default;
-
 }
 
 .li_dropdown_home {
@@ -91,17 +88,6 @@ footer {
     color: #FFFFFF;
     padding: 10px;
     text-align: center;
-}
-
-#button_drop_down_trip {
-    float: left;
-}
-
-#info_package {
-    float: left;
-    color: vlack;
-    font-size: large;
-    font-family: "Times New Roman", Georgia, Serif;
 }
 
 .p_class {

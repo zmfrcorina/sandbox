@@ -1,195 +1,113 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Mar 27, 2017, 11:56:27 PM
-    Author     : Andreea
-*/
-
 .float_right {
     padding-right: 300px;
     cursor: default;
-
 }
 
-.tourism_h3{
-    margin-left: 40%;
-    cursor: default;
-
-}
-.dimension_photos{
-    width: 275px;
-    height: 183px;
-    cursor: default;
-
-}
 .floating-box {
     float: left;
     width: 150px;
     height: 75px;
     margin: 0 10% 0 10%;
     cursor: default;
-
 }
 
-/* .ul_offers {
-    list-style-type: none;
-    display: inline;
-    cursor: default;
-
-} */
-
-#smth{
-    position:absolute;
-    float: left;
-    margin-left: 10%;
-    cursor: default;
-
-}
-.li_offer_ul{
-    float: bottom;
-    cursor: default;
-}
-
-
-
-.img_class{
-    margin-top:10%;
-    position:relative;
+.img_class {
+    margin-top: 10%;
+    position: relative;
     border-radius: 8px;
     cursor: default;
-    top:0; bottom:0; left:0; right:0;
-    border:5px solid grey;
-    border-image-outset:10px; 
-}
-
-.div_img_offer {
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    cursor: default;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 5px solid grey;
+    border-image-outset: 10px;
 }
 
 .container {
     text-align: center;
     padding: 10px 20px;
     cursor: default;
-
 }
 
-.li_dropdown_home{
-    -webkit-appearance: none; 
+.li_dropdown_home {
+    -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;     
+    appearance: none;
 }
 
 #banner {
-	background-image: url('../Photos/background-image1.jpg');
-	background-size: cover;
-	background-position: center;
-	height: 500px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: #FFFFFF;
+    background-image: url('../Photos/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
 }
 
 .button {
-	background-color: #06a82b;
-	color: #eff1f5;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	text-decoration: none;
+    background-color: #06a82b;
+    color: #eff1f5;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 #services {
-	background-color: #FFFFFF;
-	padding: 50px;
+    background-color: #FFFFFF;
+    padding: 50px;
 }
 
 #services ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 #services li {
-	margin: 10px 0;
-	font-size: 18px;
+    margin: 10px 0;
+    font-size: 18px;
 }
 
 #about {
-	background-color: #F2F2F2;
-	padding: 50px;
+    background-color: #F2F2F2;
+    padding: 50px;
 }
 
 #about p {
-	font-size: 18px;
-	line-height: 1.5;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 footer {
-	background-color: #333333;
-	color: #FFFFFF;
-	padding: 10px;
-	text-align: center;
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 10px;
+    text-align: center;
 }
 
-#button_drop_down_trip{
+.p_class {
     float: left;
-}
-#info_package{
-    float: left;
-    color:vlack;
+    color: black;
     font-size: large;
     font-family: "Times New Roman", Georgia, Serif;
 }
 
-#h2_trip{
-    color:black;
-    font-family: "Times New Roman", Georgia, Serif;
-
-}
-.p_class{
-    float: left;
-    color:black;
-    font-size: large;
-    font-family: "Times New Roman", Georgia, Serif;
-}
-.div_info_package{
-    height: 200px;
-    width: 80%;
-    background-color: white;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 3%;
-}
-.display_class{
-
+.display_class {
     visibility: hidden;
     display: none;
 }
-.display_button{
+
+.display_button {
     background: transparent;
     border: none !important;
-    font-size:0;
-}
-#div_for_add_offer_bttn{
-    margin-left: 10%;
-}
-li:hover{
-    font-family: cursive;
+    font-size: 0;
 }
 
-#div_for_add_package_bttn{
-    margin-left: 10%;
-}
-#div_for_add_trip_bttn{
-    margin-left: 10%;
-}
-.class_for_table{
-    background-color: grey;
+li:hover {
+    font-family: cursive;
 }

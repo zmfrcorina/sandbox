@@ -4,20 +4,6 @@ body {
 	padding: 0;
 }
 
-nav {
-	display: inline-block;
-}
-
-nav a {
-	color: #fff;
-	text-decoration: none;
-	padding: 10px;
-}
-
-nav a:hover {
-	background-color: #555;
-}
-
 main {
 	padding: 20px;
 	background-color: #f7f7f7;

@@ -12,13 +12,13 @@ AdminView.prototype = {
     onAdminPopulate: function () {
         const dateInput = document.getElementById('date');
 
-        // Get today's date
+        // Get today's date.
         const today = new Date();
 
-        // Format the date as YYYY-MM-DD
+        // Format the date as YYYY-MM-DD.
         const formattedDate = today.toISOString().split('T')[0];
 
-        // Set the default value of the date input
+        // Set the default value of the date input.
         dateInput.value = formattedDate;
     },
     onSubmitButton: function () {
@@ -32,11 +32,11 @@ AdminView.prototype = {
             async: false,
             dataType: 'json',
             success: function (data) {
-                // Clear the table body
+                // Clear the table body.
                 const tableBody = document.querySelector('tbody');
                 tableBody.innerHTML = '';
 
-                // Iterate over the data and populate the table rows
+                // Iterate over the data and populate the table rows.
                 data.forEach(function (appointment) {
                     const appointmentRow = document.createElement('tr');
 

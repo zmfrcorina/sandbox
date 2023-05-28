@@ -36,8 +36,6 @@ input{
     float: right;
     clear: right;
 }
-#phone_num{
-}
 
 .table-highlight tr.selected {
     background-color: #a9ccf5;

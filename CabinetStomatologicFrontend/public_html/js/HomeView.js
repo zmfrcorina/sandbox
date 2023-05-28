@@ -52,7 +52,5 @@ HomeView.prototype = {
                 appointments.onAppointmentsPopulate();
             });
         }
-        
     }
 };
-

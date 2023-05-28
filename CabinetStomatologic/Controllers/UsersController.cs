@@ -13,7 +13,6 @@ using System.Web.Http.Cors;
 
 namespace CabinetStomatologic.Controllers
 {
-
     public class UsersController : ApiController
     {
         private CabinetStomatologicContext db = new CabinetStomatologicContext();
@@ -51,7 +50,6 @@ namespace CabinetStomatologic.Controllers
         }
 
         [Route("api/users/get/{userId}")]
-        [ResponseType(typeof(Package))]
         public IHttpActionResult GetUserById(int userId)
         {
             IEnumerable<User> user = db.User.Where(pk => pk.UserId == userId);
@@ -98,8 +96,6 @@ namespace CabinetStomatologic.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-       
 
         // POST: api/Users
         [ResponseType(typeof(User))]

@@ -2,6 +2,7 @@ MyProfile = function () {
     this.initComponents();
     var arrayTripId = [];
 };
+
 MyProfile.prototype = {
     initComponents: function () {
         this.onFormPopulate();
@@ -10,31 +11,14 @@ MyProfile.prototype = {
     },
 
     attachListeners: function () {
-         // Get all the rows in the table
-         var rows = document.querySelectorAll('.table-highlight tbody tr');
-
-         // Add a click event listener to each row
-         rows.forEach(function (row) {
-             row.addEventListener('click', function () {
-                 // Remove the 'selected' class from all rows
-                 rows.forEach(function (row) {
-                     row.classList.remove('selected');
-                 });
-
-                 // Add the 'selected' class to the clicked row
-                 this.classList.add('selected');
-             });
-         });
-         
         $('#save_changes_my_profile_bttn').on('click', $.proxy(this.onSaveButton, this));
-        $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
-        $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
-
+        $('table').on('click', 'tr', $.proxy(this.getIdAppointment, this));
+        $('#yes_bttn').on('click', $.proxy(this.deleteAppointment, this));
     },
-    getIdBooking: function (e) {
+    getIdAppointment: function (e) {
         if (typeof e !== 'undefined') {
             var id = $(e.currentTarget).attr('id');
-            window.localStorage.setItem('idForCancelBooking', id);
+            window.localStorage.setItem('idForCancelAppointment', id);
         }
         return id;
     },
@@ -58,7 +42,6 @@ MyProfile.prototype = {
                     var time = document.createTextNode(this.Time);
                     var message = document.createTextNode(this.Message);
 
-
                     td01.appendChild(date);
                     td02.appendChild(time);
                     td03.appendChild(message);
@@ -67,25 +50,42 @@ MyProfile.prototype = {
                     trU.appendChild(td02);
                     trU.appendChild(td03);
 
-                    var elementU = document.getElementById("table_package_info_books");
+                    var elementU = document.getElementById("table_appointments");
                     elementU.appendChild(trU);
+                });
+
+                // Get all the rows in the table
+                var rows = document.querySelectorAll('.table-highlight tbody tr');
+
+                // Add a click event listener to each row
+                rows.forEach(function (row) {
+                    row.addEventListener('click', function () {
+                        // Remove the 'selected' class from all rows
+                        rows.forEach(function (row) {
+                            row.classList.remove('selected');
+                        });
+
+                        // Add the 'selected' class to the clicked row
+                        this.classList.add('selected');
+                    });
                 });
             },
             failure: function (response) {
                 alert(response.d);
             }
         });
-
     },
+
     refreshTable: function () {
-        var table = document.getElementById("table_package_info_books");
+        var table = document.getElementById("table_appointments");
         while (table.firstChild) {
             table.removeChild(table.firstChild);
         }
         this.populate(); // Call the populate function to add the elements again
     },
-    deleteBooking: function () {
-        var id = window.localStorage.getItem('idForCancelBooking');
+
+    deleteAppointment: function () {
+        var id = window.localStorage.getItem('idForCancelAppointment');
         console.log(id);
         var self = this;
         $.ajax({
@@ -100,8 +100,9 @@ MyProfile.prototype = {
                 console.log('error');
             }
         });
-        window.localStorage.removeItem('idForCancelBooking');
+        window.localStorage.removeItem('idForCancelAppointment');
     },
+
     onFormPopulate: function () {
         var userName = window.localStorage.getItem('username');
         $.ajax({
@@ -122,6 +123,7 @@ MyProfile.prototype = {
             }
         });
     },
+    
     onSaveButton: function () {
         var userId = $('#userId').val();
         var userType = $('#usersType').val();

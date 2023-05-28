@@ -4,19 +4,6 @@
 
 }
 
-.tourism_h3 {
-    margin-left: 40%;
-    cursor: default;
-
-}
-
-.dimension_photos {
-    width: 275px;
-    height: 183px;
-    cursor: default;
-
-}
-
 .floating-box {
     float: left;
     width: 150px;
@@ -24,19 +11,6 @@
     margin: 0 10% 0 10%;
     cursor: default;
 
-}
-
-#smth {
-    position: absolute;
-    float: left;
-    margin-left: 10%;
-    cursor: default;
-
-}
-
-.li_offer_ul {
-    float: bottom;
-    cursor: default;
 }
 
 .img_class {
@@ -50,12 +24,6 @@
     right: 0;
     border: 5px solid grey;
     border-image-outset: 10px;
-}
-
-.div_img_offer {
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    cursor: default;
 }
 
 .container {
@@ -136,25 +104,11 @@ footer {
     font-family: "Times New Roman", Georgia, Serif;
 }
 
-#h2_trip {
-    color: black;
-    font-family: "Times New Roman", Georgia, Serif;
-}
-
 .p_class {
     float: left;
     color: black;
     font-size: large;
     font-family: "Times New Roman", Georgia, Serif;
-}
-
-.div_info_package {
-    height: 200px;
-    width: 80%;
-    background-color: white;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 3%;
 }
 
 .display_class {
@@ -168,22 +122,6 @@ footer {
     font-size: 0;
 }
 
-#div_for_add_offer_bttn {
-    margin-left: 10%;
-}
-
 li:hover {
     font-family: cursive;
-}
-
-#div_for_add_package_bttn {
-    margin-left: 10%;
-}
-
-#div_for_add_trip_bttn {
-    margin-left: 10%;
-}
-
-.class_for_table {
-    background-color: grey;
 }

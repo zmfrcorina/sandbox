@@ -38,7 +38,7 @@ AppointmentsView.prototype = {
       $('#date').val("");
 
       var timeDropdown = document.getElementById("time");
-      //clear children
+      // Clear children.
       while (timeDropdown.firstChild) {
         timeDropdown.removeChild(timeDropdown.firstChild);
       }
@@ -47,7 +47,7 @@ AppointmentsView.prototype = {
   onDateChanged: function () {
     var timeDropdown = document.getElementById("time");
 
-    //clear children
+    // Clear children.
     while (timeDropdown.firstChild) {
       timeDropdown.removeChild(timeDropdown.firstChild);
     }

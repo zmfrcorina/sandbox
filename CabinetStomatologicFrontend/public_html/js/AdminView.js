@@ -32,11 +32,11 @@ AdminView.prototype = {
             async: false,
             dataType: 'json',
             success: function (data) {
-                // Clear the table body
+                // Clear the table body.
                 const tableBody = document.querySelector('tbody');
                 tableBody.innerHTML = '';
 
-                // Iterate over the data and populate the table rows
+                // Iterate over the data and populate the table rows.
                 data.forEach(function (appointment) {
                     const appointmentRow = document.createElement('tr');
 

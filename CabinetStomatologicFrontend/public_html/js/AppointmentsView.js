@@ -95,6 +95,7 @@ AppointmentsView.prototype = {
       'Message': message
     };
     if (userId != "undefined") {
+      var self = this;
       $.ajax({
         headers: {
           'Accept': 'application/json',
@@ -107,7 +108,7 @@ AppointmentsView.prototype = {
         success: function () {
           console.log('appointment updated successfully');
           document.getElementById("status-header").innerHTML = "Programare facută cu succes!";
-          this.onAppointmentsPopulate();
+          self.onAppointmentsPopulate();
         },
         error: function () {
           console.log('error updating appointment');
@@ -116,7 +117,6 @@ AppointmentsView.prototype = {
       });
       localStorage.removeItem('username');
       window.localStorage.setItem('username', userName);
-      this.onAppointmentsPopulate();
     }
   }
 };

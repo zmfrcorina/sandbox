@@ -24,18 +24,18 @@ and open the template in the editor.
         <main>
             <div id="login">
                 <form id="my_form">
-                    <h3>Login with your account</h3>
+                    <h3>Inregistreaza-te cu contul tau</h3>
                     <span id="notification"></span>
                     <ul class="login_list">
                         <li class="block">
-                            <label for="username">Username</label>
+                            <label for="username">Nume utilizator</label>
                         </li>
                         <li>
                             <input type="text" id="username" required /> <span title="Invalid Username" class="alert-icon hide" id="alert_icon_username" > </span>
 
                         </li>
                         <li class="block">
-                            <label for="password">Password</label>
+                            <label for="password">Parola</label>
                         </li>
                         <li>
                             <input type="password" id="password" required /> <span title="Invalid Password" class="alert-icon hide" id="alert_icon_password"> </span>
@@ -43,11 +43,8 @@ and open the template in the editor.
                         <li id="notification_li"></li>
 
                         <li class="li_kendo" id="li_bttn_log_reg">
-                            <button type="button" id="login_button" class="btn btn-info btn-lg" >Log in</button>
-
-                            <button type="button" id="register_button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Register</button>
-
-
+                            <button type="button" id="login_button" class="btn btn-info btn-lg" >Logare</button>
+                            <button type="button" id="register_button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Inregistrare</button>
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" role="dialog">
                                 <div class="modal-dialog">
@@ -56,65 +53,45 @@ and open the template in the editor.
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Register</h4>
+                                            <h4 class="modal-title">Inregistrare</h4>
                                         </div>
                                         <div class="modal-body">
-
-
                                             <form id="register_form">
-                                                <label for='userName'>User name:</label>
+                                                <label for='userName'>Nume utilizator:</label>
                                                 <input type='text' name='name' id='userName' required >
                                                 <p id='not1'></p>
-                                                <label for='firstName'>First name:</label>
+                                                <label for='firstName'>Prenume:</label>
                                                 <input type='text' name='name' id='firstName' required >
                                                 <p id='not2'></p>
-                                                <label for='lastName'>Last name:</label>
+                                                <label for='lastName'>Nume:</label>
                                                 <input type='text' name='name' id='lastName' required >
                                                 <p id='not3'></p>
                                                 <label for='email'>Email:</label>
                                                 <input type='text' name='email' id='email' required>
                                                 <p id='not4'></p>
-                                                <label for='email'>Phone number:</label>
+                                                <label for='email'>Numar de telefon:</label>
                                                 <input type='text' name='phone' id='phone' required>
                                                 <p id='not5'></p>
-                                                <label for='passwordForm'>Password:</label>
+                                                <label for='passwordForm'>Parola:</label>
                                                 <input type='password' name='password' id='passwordForm' required>
-                                                
-                                                <label for='confirmPassword'>Confirm password:</label>
+                                                <label for='confirmPassword'>Confirma parola:</label>
                                                 <input type='password' name='passw' id='confirmPassword' required>
                                                 <p id='not6'></p>
-
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default"  id="submit_bttn">Submit</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
+                                            <button type="submit" class="btn btn-default"  id="submit_bttn">Creaza</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Inchide</button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div id="kendo_window"></div>
-                            <a href='#' id='forgot_pass'> Forgot my password.</a>
-                            <a href='#' id='go_back'>Go back to site</a>
+                            <a href='#' id='forgot_pass'>Mi-am uitat parola</a>
+                            <a href='#' id='go_back'>Inapoi la pagina principala</a>
                         </li>
                     </ul>
                 </form>
-            </div>
-            <div id="divide">
-                <h3>or</h3>
-            </div>
-            <div id="login_with">
-                <h3>Login with:</h3>
-                <button type="button" id="login_with_facebook" >
-                    <img src="https://www.facebook.com/images/fb_icon_325x325.png"  id="image_facebook" alt="Facebook icon"/>
-                    <span class="text">  Facebook </span>
-                </button>
-                <button type="button" id="login_with_google">
-                    <img src="http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Web-Google-plus-Metro-icon.png" id="image_google" alt="Google icon"/>
-                    <span class="text">   Google Plus </span>
-                </button>
             </div>
         </main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -122,6 +99,5 @@ and open the template in the editor.
         <script src="js/login.js"></script>
         <script src="js/register.js"></script>
         <script src='js/logout.js'></script>
-
     </body>
 </html>

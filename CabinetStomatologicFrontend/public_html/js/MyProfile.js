@@ -5,13 +5,27 @@ MyProfile = function () {
 MyProfile.prototype = {
     initComponents: function () {
         this.onFormPopulate();
-        //this.onSvaeButton();
+        this.populate();
         this.attachListeners();
-        this.getTrips();
-        //this.populate();
     },
 
     attachListeners: function () {
+         // Get all the rows in the table
+         var rows = document.querySelectorAll('.table-highlight tbody tr');
+
+         // Add a click event listener to each row
+         rows.forEach(function (row) {
+             row.addEventListener('click', function () {
+                 // Remove the 'selected' class from all rows
+                 rows.forEach(function (row) {
+                     row.classList.remove('selected');
+                 });
+
+                 // Add the 'selected' class to the clicked row
+                 this.classList.add('selected');
+             });
+         });
+         
         $('#save_changes_my_profile_bttn').on('click', $.proxy(this.onSaveButton, this));
         $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
         $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
@@ -24,22 +38,69 @@ MyProfile.prototype = {
         }
         return id;
     },
+    populate: function () {
+        var userId = window.localStorage.getItem('userId');
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:57312/api/appointments/user/" + userId,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $.each(data, function () {
+                    console.log(data);
+                    var trU = document.createElement("tr");
+                    trU.id = this.AppointmentId;
+                    var td01 = document.createElement("td");
+                    var td02 = document.createElement("td");
+                    var td03 = document.createElement("td");
+
+                    var date = document.createTextNode(this.Date.split("T")[0]);
+                    var time = document.createTextNode(this.Time);
+                    var message = document.createTextNode(this.Message);
+
+
+                    td01.appendChild(date);
+                    td02.appendChild(time);
+                    td03.appendChild(message);
+
+                    trU.appendChild(td01);
+                    trU.appendChild(td02);
+                    trU.appendChild(td03);
+
+                    var elementU = document.getElementById("table_package_info_books");
+                    elementU.appendChild(trU);
+                });
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+
+    },
+    refreshTable: function () {
+        var table = document.getElementById("table_package_info_books");
+        while (table.firstChild) {
+            table.removeChild(table.firstChild);
+        }
+        this.populate(); // Call the populate function to add the elements again
+    },
     deleteBooking: function () {
         var id = window.localStorage.getItem('idForCancelBooking');
         console.log(id);
+        var self = this;
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:57312/api/books/deleteBook/" + id,
+            url: "http://localhost:57312/api/appointments/deleteAppointment/" + id,
 
             success: function () {
                 console.log('success');
+                self.refreshTable();
             },
             error: function () {
                 console.log('error');
             }
         });
         window.localStorage.removeItem('idForCancelBooking');
-        //$( "#table_users" ).load( "users.html #table_users" );
     },
     onFormPopulate: function () {
         var userName = window.localStorage.getItem('username');
@@ -61,7 +122,6 @@ MyProfile.prototype = {
             }
         });
     },
-
     onSaveButton: function () {
         var userId = $('#userId').val();
         var userType = $('#usersType').val();
@@ -100,99 +160,5 @@ MyProfile.prototype = {
         localStorage.removeItem('username');
         window.localStorage.setItem('username', userName);
         this.onFormPopulate();
-    },
-    getTripIds: function (arrayTripId, arrayBooking) {
-        arrayTripId = [];
-        arrayBooking = [];
-        var userId = window.localStorage.getItem('userId');//var userId = $('#userId').val();
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:57312/api/books/user/" + userId,
-            dataType: "json",
-            crossDomain: true,
-            async: false,
-            success: function (data) {
-
-                $.each(data, function () {
-                    if (typeof this.TripItinerariumId !== 'undefined') {
-                        arrayTripId.push(this.TripItinerariumId);
-                        arrayBooking.push(this.BookId);
-                    }
-                });
-            },
-            failure: function (response) {
-                alert(response.d);
-            }
-
-        });
-        obj = { "trip": arrayTripId, "booking": arrayBooking};
-        return obj;
-
-
-    },
-    getTrips: function () {
-        $("#table_package_info_books").empty();
-        var array1, array2;
-        var obj = this.getTripIds(array1, array2);
-        array1 = obj.trip;
-        array2 = obj.booking;
-        for (var i = 0; i < array1.length; i++) {
-            this.populate(array1[i], array2[i] );
-        }
-    },
-    populate: function (id, idBooking) {
-        $.ajax({
-            type: 'GET',
-            url: "http://localhost:57312/api/tripItinerariums/getTripPackage/" + id,
-            dataType: "json",
-            async: false,
-            success: function (data) {
-                console.log(data);
-                //$.each(data, function () {
-
-                var trU = document.createElement("tr");
-                trU.id = idBooking;
-                var td01 = document.createElement("td");
-                var td02 = document.createElement("td");
-                var td03 = document.createElement("td");
-                var td04 = document.createElement("td");
-                var td05 = document.createElement("td");
-                var td06 = document.createElement("td");
-
-                var city = document.createTextNode(data.DestinationCity);
-                var hotel = document.createTextNode(data.Hotel);
-                var flight = document.createTextNode(data.Plane);
-                var departure = document.createTextNode(data.Start);
-                var returne = document.createTextNode(data.Finish);
-                var price = document.createTextNode(data.Price);
-
-
-                td01.appendChild(city);
-                td02.appendChild(hotel);
-                td03.appendChild(flight);
-                td04.appendChild(departure);
-                td05.appendChild(returne);
-                td06.appendChild(price);
-
-                trU.appendChild(td01);
-                trU.appendChild(td02);
-                trU.appendChild(td03);
-                trU.appendChild(td04);
-                trU.appendChild(td05);
-                trU.appendChild(td06);
-
-                var elementU = document.getElementById("table_package_info_books");
-                elementU.appendChild(trU);
-
-
-                // });
-
-            },
-            failure: function (response) {
-                alert(response.d);
-            }
-        });
-
     }
-
 };

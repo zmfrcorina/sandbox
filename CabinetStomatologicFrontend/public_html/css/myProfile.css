@@ -38,3 +38,15 @@ input{
 }
 #phone_num{
 }
+
+.table-highlight tr.selected {
+    background-color: #a9ccf5;
+}
+
+table {
+    margin: 0 auto;
+}
+
+table td, table th {
+    text-align: center;
+}

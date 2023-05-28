@@ -67,7 +67,7 @@ namespace CabinetStomatologic.Controllers
         [Route("api/appointments/user/{id}")]
         public IHttpActionResult GetAppointmentsByUserId(int id)
         {
-            IEnumerable<Appointment> appointmnets = db.Appointment.Where(it => it.AppointmentId == id);
+            IEnumerable<Appointment> appointmnets = db.Appointment.Where(it => it.UserId == id).ToArray();
 
             if (appointmnets == null)
             {

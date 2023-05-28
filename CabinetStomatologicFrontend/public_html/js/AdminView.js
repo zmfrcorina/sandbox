@@ -12,13 +12,13 @@ AdminView.prototype = {
     onAdminPopulate: function () {
         const dateInput = document.getElementById('date');
 
-        // Get today's date
+        // Get today's date.
         const today = new Date();
 
-        // Format the date as YYYY-MM-DD
+        // Format the date as YYYY-MM-DD.
         const formattedDate = today.toISOString().split('T')[0];
 
-        // Set the default value of the date input
+        // Set the default value of the date input.
         dateInput.value = formattedDate;
     },
     onSubmitButton: function () {

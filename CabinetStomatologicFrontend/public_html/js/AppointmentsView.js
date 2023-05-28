@@ -9,9 +9,8 @@ AppointmentsView.prototype = {
   attachListeners: function () {
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
     $('#date').on('change', $.proxy(this.onDateChanged, this));
-    // UPDATE FOR APPOINTMENTS TO REMOVE CANCELLATION
     $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
-    $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
+    $('#yes_bttn').on('click', $.proxy(this.deleteAppointment, this));
 
   },
   onAppointmentsPopulate: function () {

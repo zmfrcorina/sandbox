@@ -1,15 +1,13 @@
 MainView = function () {
     this.initComponent();
-
 };
+
 MainView.prototype = {
-
     initComponent: function () {
-
         this.attachListeners();
         this.verifyUserType();
-
     },
+
     attachListeners: function () {
         $('nav').off();
         $('nav').on('click', 'li', $.proxy(this.onNavItem, this));
@@ -25,8 +23,8 @@ MainView.prototype = {
             $('#users').addClass('.display_class');
         if (user == 'admin')
             $('#users').removeClass('.display_class');
-
     },
+
     onNavItem: function (event) {
         var itemId = $(event.currentTarget).attr('id');
         switch (itemId) {
@@ -60,16 +58,6 @@ MainView.prototype = {
                     });
                 }
                 break;
-            case 'users':
-                {
-                    var user = window.localStorage.getItem('userType');
-                    if (user == 'admin')
-                        $('#id_for_main').load('users.html', function () {
-                            var users = new UsersView();
-                            users.onAllUsersPopulate();
-                        });
-                    break;
-                }
             case 'bttn1':
                 {
                     var user = window.localStorage.getItem('userType');
@@ -82,17 +70,16 @@ MainView.prototype = {
                 var logOut = new Logout();
                 window.location.href = "login.html";
                 break;
-
             case 'bttn3':
                 window.location.href = "login.html";
                 break;
             case 'bttn4':
                 window.location.href = "login.html";
                 break;
-
         }
     }
 };
+
 $(document).ready(function () {
     var mainApp = new MainView();
 });

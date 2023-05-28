@@ -12,13 +12,13 @@ MyProfile.prototype = {
     attachListeners: function () {
         $('#save_changes_my_profile_bttn').on('click', $.proxy(this.onSaveButton, this));
         $('table').on('click', 'tr', $.proxy(this.getIdBooking, this));
-        $('#yes_bttn').on('click', $.proxy(this.deleteBooking, this));
+        $('#yes_bttn').on('click', $.proxy(this.deleteAppointment, this));
 
     },
     getIdBooking: function (e) {
         if (typeof e !== 'undefined') {
             var id = $(e.currentTarget).attr('id');
-            window.localStorage.setItem('idForCancelBooking', id);
+            window.localStorage.setItem('idForCancelAppointment', id);
         }
         return id;
     },
@@ -82,8 +82,8 @@ MyProfile.prototype = {
         }
         this.populate(); // Call the populate function to add the elements again
     },
-    deleteBooking: function () {
-        var id = window.localStorage.getItem('idForCancelBooking');
+    deleteAppointment: function () {
+        var id = window.localStorage.getItem('idForCancelAppointment');
         console.log(id);
         var self = this;
         $.ajax({
@@ -98,7 +98,7 @@ MyProfile.prototype = {
                 console.log('error');
             }
         });
-        window.localStorage.removeItem('idForCancelBooking');
+        window.localStorage.removeItem('idForCancelAppointment');
     },
     onFormPopulate: function () {
         var userName = window.localStorage.getItem('username');

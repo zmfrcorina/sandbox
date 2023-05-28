@@ -13,9 +13,6 @@ Logout.prototype = {
     },
     onLogOut: function (event) {
         event.preventDefault();
-        
-       // console.log(currentUser);
-        //localStorage.removeItem('sessionToken');
         localStorage.removeItem('username');
         localStorage.removeItem('userType');
         localStorage.clear();

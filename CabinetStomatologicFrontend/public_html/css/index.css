@@ -139,7 +139,6 @@ footer {
 #h2_trip {
     color: black;
     font-family: "Times New Roman", Georgia, Serif;
-
 }
 
 .p_class {
@@ -159,7 +158,6 @@ footer {
 }
 
 .display_class {
-
     visibility: hidden;
     display: none;
 }

@@ -38,7 +38,7 @@ nav li a:hover {
 }
 
 #banner {
-	background-image: url('../Photos/background-image1.jpg');
+	background-image: url('../Photos/background-image.jpg');
 	background-size: cover;
 	background-position: center;
 	height: 500px;

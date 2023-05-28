@@ -58,7 +58,6 @@ MyProfile.prototype = {
                     var time = document.createTextNode(this.Time);
                     var message = document.createTextNode(this.Message);
 
-
                     td01.appendChild(date);
                     td02.appendChild(time);
                     td03.appendChild(message);

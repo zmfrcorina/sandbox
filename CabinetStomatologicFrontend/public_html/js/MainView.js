@@ -38,7 +38,9 @@ MainView.prototype = {
                 $('#id_for_main').load('aboutUs.html');
                 break;
             case 'dentalServices':
-                $('#id_for_main').load('dentalServices.html');
+                $('#id_for_main').load('dentalServices.html', function () {
+                    new DentalServicesView();
+                });
                 break;
             case 'contact':
                 $('#id_for_main').load('contact.html');

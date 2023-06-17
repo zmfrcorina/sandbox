@@ -1,16 +1,79 @@
+var formattedDate;
 AppointmentsView = function () {
   this.initComponents();
 };
 AppointmentsView.prototype = {
   initComponents: function () {
+    var today = new Date();
+    formattedDate = today.getFullYear() + '-' +
+      ('0' + (today.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + today.getDate()).slice(-2);
+
     this.attachListeners();
-    this.onAppointmentsPopulate();
+    this.onAppointmentsInit();
   },
+  populateAppointments: function(){
+    var timeDropdown = document.getElementById("time");
+
+    // Clear children
+    while (timeDropdown.firstChild) {
+      timeDropdown.removeChild(timeDropdown.firstChild);
+    }
+
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:57312/api/freeAppointments/" + formattedDate,
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        $.each(data, function () {
+          const option = document.createElement("option");
+          option.textContent = this;
+          timeDropdown.appendChild(option);
+        });
+      }
+    });
+  },
+  onDateChanged: function (event) {
+
+    document.getElementById("status-header").innerHTML = "";
+
+    var selectedDate = event.date;
+    formattedDate = selectedDate.getFullYear() + '-' +
+      ('0' + (selectedDate.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + selectedDate.getDate()).slice(-2);
+
+    console.log('Date changed:', formattedDate);
+    this.populateAppointments();
+  },
+
   attachListeners: function () {
+    var self = this;
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
-    $('#date').on('change', $.proxy(this.onDateChanged, this));
+
+    $('#time').on('change', function () {
+      self.onTimeChanged(); 
+    });
+
+    $(document).ready(function () {
+      var datePickerContainer = $('#datePickerContainer');
+
+      datePickerContainer.datepicker({
+        format: 'yyyy-mm-dd',
+        startDate: 'today',
+        autoclose: true,
+        todayHighlight: true
+      }).on('changeDate', (event) => { 
+        self.onDateChanged(event); 
+      });
+    });
   },
-  onAppointmentsPopulate: function () {
+
+  onTimeChanged: function () {
+    document.getElementById("status-header").innerHTML = "";
+  },
+
+  onAppointmentsInit: function () {
     var userName = window.localStorage.getItem('username');
     if (userName == null) {
       document.getElementById("name").value = "";
@@ -31,37 +94,15 @@ AppointmentsView.prototype = {
         }
       });
 
-      $('#date').val("");
-
       var timeDropdown = document.getElementById("time");
       // Clear children.
       while (timeDropdown.firstChild) {
         timeDropdown.removeChild(timeDropdown.firstChild);
       }
     }
+    this.populateAppointments();
   },
-  onDateChanged: function () {
-    var timeDropdown = document.getElementById("time");
 
-    // Clear children.
-    while (timeDropdown.firstChild) {
-      timeDropdown.removeChild(timeDropdown.firstChild);
-    }
-
-    $.ajax({
-      type: "GET",
-      url: "http://localhost:57312/api/freeAppointments/" + $('#date').val(),
-      dataType: "json",
-      async: false,
-      success: function (data) {
-        $.each(data, function () {
-          const option = document.createElement("option");
-          option.textContent = this;
-          timeDropdown.appendChild(option);
-        });
-      }
-    });
-  },
   onSubmitButton: function () {
     var userName = window.localStorage.getItem('username');
     var userId;
@@ -79,14 +120,13 @@ AppointmentsView.prototype = {
         }
       });
     }
-    var date = $('#date').val();
     var time = $('#time').val();
     var message = $('#message').val();
 
     var obj = {
       'AppointmentId': 1,
       'UserId': userId,
-      'Date': date,
+      'Date': formattedDate,
       'Time': time,
       'Message': message
     };
@@ -104,7 +144,8 @@ AppointmentsView.prototype = {
         success: function () {
           console.log('appointment updated successfully');
           document.getElementById("status-header").innerHTML = "Programare facută cu succes!";
-          self.onAppointmentsPopulate();
+          self.onAppointmentsInit();
+          self.populateAppointments();
         },
         error: function () {
           console.log('error updating appointment');

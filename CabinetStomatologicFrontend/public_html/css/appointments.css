@@ -5,62 +5,78 @@ body {
   background-size: cover;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+input[type="submit"]:hover {
+  background-color: #035f18;
+} 
 
-main {
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 20px;
 }
 
-h1 {
-  font-size: 32px;
-  font-weight: bold;
-  text-align: center;
-  margin: 20px 0;
+.left-column {
+  width: 50%; /* Adjust the width as needed */
 }
 
-form {
+.form-column {
   display: flex;
-  flex-wrap: wrap;
-}
-
-label {
-  display: block;
+  flex-direction: column;
   margin-bottom: 10px;
-  width: 100%;
+  width: 100%; /* Make inputs 100% wide */
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="time"],
-textarea {
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.form-column label {
+  margin-bottom: 5px;
+}
+
+.form-column input,
+.form-column select,
+.form-column textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the content */
+  width: 50%; /* Adjust the width as needed */
+}
+
+.right-column #datePickerContainer {
+  width: 100%; /* Set the width to 100% */
+  display: flex;
+  justify-content: center; /* Move the date picker to the center */
+}
+
+
+
+/* #datePickerContainer {
+  width: 50%; 
+  display: flex;
+  justify-content: center; 
+  margin-top: 10px;
+} */
+
+
+.right-column .form-column {
+  align-self: center; /* Center align the form column within the right column */
+  width: 35%; /* Adjust the width as needed */
+}
+
+/* .right-column .form-column select {
+  align-self: flex-end; 
+}
+
+
+.right-column .form-column label {
+  text-align: center; 
+} */
+
+
+
+main {
   margin-bottom: 20px;
-  padding: 10px;
-  width: 100%;
-}
-
-input[type="submit"] {
-  background-color: #06a82b;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 10px 20px;
-}
-
-input[type="submit"]:hover {
-  background-color: #035f18;
-}
-
-footer {
-  background-color: #ccc;
-  color: #666;
-  padding: 20px;
-  text-align: center;
 }

@@ -49,7 +49,7 @@ HomeView.prototype = {
         else {
             $('#id_for_main').load('appointments.html', function () {
                 var appointments = new AppointmentsView();
-                appointments.onAppointmentsPopulate();
+                appointments.onAppointmentsInit();
             });
         }
     }

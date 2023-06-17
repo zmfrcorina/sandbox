@@ -1,14 +1,63 @@
+var formattedDate;
 AppointmentsView = function () {
   this.initComponents();
 };
 AppointmentsView.prototype = {
   initComponents: function () {
+    var today = new Date();
+    formattedDate = today.getFullYear() + '-' +
+      ('0' + (today.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + today.getDate()).slice(-2);
+
     this.attachListeners();
     this.onAppointmentsPopulate();
   },
+  onDateChanged: function (event) {
+
+    var selectedDate = event.date;
+    formattedDate = selectedDate.getFullYear() + '-' +
+      ('0' + (selectedDate.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + selectedDate.getDate()).slice(-2);
+
+    console.log('Date changed:', formattedDate);
+
+    var timeDropdown = document.getElementById("time");
+
+    // Clear children
+    while (timeDropdown.firstChild) {
+      timeDropdown.removeChild(timeDropdown.firstChild);
+    }
+
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:57312/api/freeAppointments/" + formattedDate,
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        $.each(data, function () {
+          const option = document.createElement("option");
+          option.textContent = this;
+          timeDropdown.appendChild(option);
+        });
+      }
+    });
+  },
+
   attachListeners: function () {
+    var self = this;
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
-    $('#date').on('change', $.proxy(this.onDateChanged, this));
+    $(document).ready(function () {
+      var datePickerContainer = $('#datePickerContainer');
+
+      datePickerContainer.datepicker({
+        format: 'yyyy-mm-dd',
+        startDate: 'today',
+        autoclose: true,
+        todayHighlight: true
+      }).on('changeDate', (event) => { // Use an arrow function to maintain the context
+        self.onDateChanged(event); // Call the method using the stored reference
+      });
+    });
   },
   onAppointmentsPopulate: function () {
     var userName = window.localStorage.getItem('username');
@@ -31,8 +80,6 @@ AppointmentsView.prototype = {
         }
       });
 
-      $('#date').val("");
-
       var timeDropdown = document.getElementById("time");
       // Clear children.
       while (timeDropdown.firstChild) {
@@ -40,28 +87,7 @@ AppointmentsView.prototype = {
       }
     }
   },
-  onDateChanged: function () {
-    var timeDropdown = document.getElementById("time");
 
-    // Clear children.
-    while (timeDropdown.firstChild) {
-      timeDropdown.removeChild(timeDropdown.firstChild);
-    }
-
-    $.ajax({
-      type: "GET",
-      url: "http://localhost:57312/api/freeAppointments/" + $('#date').val(),
-      dataType: "json",
-      async: false,
-      success: function (data) {
-        $.each(data, function () {
-          const option = document.createElement("option");
-          option.textContent = this;
-          timeDropdown.appendChild(option);
-        });
-      }
-    });
-  },
   onSubmitButton: function () {
     var userName = window.localStorage.getItem('username');
     var userId;
@@ -79,14 +105,13 @@ AppointmentsView.prototype = {
         }
       });
     }
-    var date = $('#date').val();
     var time = $('#time').val();
     var message = $('#message').val();
 
     var obj = {
       'AppointmentId': 1,
       'UserId': userId,
-      'Date': date,
+      'Date': formattedDate,
       'Time': time,
       'Message': message
     };

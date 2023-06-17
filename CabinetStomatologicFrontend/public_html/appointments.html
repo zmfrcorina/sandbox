@@ -11,7 +11,6 @@
   <div class="container">
     <div class="left-column">
       <main>
-        <h1 id="status-header"></h1>
         <form onsubmit="submitForm(event)">
           <div class="form-column">
             <label for="name">Nume:</label>
@@ -37,6 +36,7 @@
             <button type="button" id="submit_appointment_bttn" class="btn btn-primary btn-md">Creaza</button>
           </div>
         </form>
+        <h1 id="status-header"></h1>
       </main>
     </div>
 
@@ -49,18 +49,6 @@
       </div>
     </div>
   </div>
-
   <script src="datepicker/bootstrap-datepicker.min.js"></script>
-  <script>
-    // Date picker initialization
-    $(document).ready(function() {
-      $('#datePickerContainer').datepicker({
-        format: 'yyyy-mm-dd',
-        startDate: 'today',
-        autoclose: true,
-        todayHighlight: true
-      }).datepicker('show');
-    });
-  </script>
 </body>
 </html>

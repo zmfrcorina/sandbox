@@ -19,22 +19,18 @@ Login.prototype = {
         $('#go_back').on('click', function () {
             window.location.href = "index.html";
         });
-        
+
     },
 
     onInputBlur: function (event) {
-        if ($("#username").val().length === 0)
-        {
+        if ($("#username").val().length === 0) {
             $("#username").next().removeClass("hide");
-        } else
-        {
+        } else {
             $("#username").next().addClass("hide");
         }
-        if ($("#password").val().length === 0)
-        {
+        if ($("#password").val().length === 0) {
             $("#password").next().removeClass("hide");
-        } else
-        {
+        } else {
             $("#password").next().addClass("hide");
         }
     },
@@ -46,7 +42,7 @@ Login.prototype = {
         var username = $("#username").val();
         var password = $("#password").val();
         if ($("#alert_icon_username").hasClass('hide') && $("#alert_icon_password").hasClass('hide')) {
-            var user = {'username': username, 'password': password};
+            var user = { 'username': username, 'password': password };
 
             $.ajax({
                 type: "GET",
@@ -54,19 +50,19 @@ Login.prototype = {
                 dataType: "json",
                 crossDomain: true,
                 success: function (data) {
-                    console.log(this.password);
-                    $.each((data), function () {
-                        if (password == this.password) {
-                            var currentUser = data[0];
-                            console.log("found" + username + " " + password);
-                            console.log(this.user);
-                            window.location.href = "index.html";
-                            window.localStorage.setItem('sessionToken', currentUser._sessionToken);
-                            window.localStorage.setItem('username', this.UserNane);
-                            window.localStorage.setItem('userType', this.userType);
-                            window.localStorage.setItem('userId', this.UserId);
-                        }
-                    });
+
+                    console.log(data[0].password);
+
+                    if (password == data[0].password) {
+                        var currentUser = data[0];
+                        console.log("found" + username + " " + password);
+                        console.log(this.user);
+                        window.location.href = "index.html";
+                        window.localStorage.setItem('sessionToken', currentUser._sessionToken);
+                        window.localStorage.setItem('username', this.UserName);
+                        window.localStorage.setItem('userType', this.UserType);
+                        window.localStorage.setItem('userId', this.UserId);
+                    }
                 },
 
                 failure: function (response) {

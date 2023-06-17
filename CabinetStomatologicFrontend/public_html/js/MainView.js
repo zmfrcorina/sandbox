@@ -54,10 +54,15 @@ MainView.prototype = {
                     });
                 }
                 else {
-                    $('#id_for_main').load('appointments.html', function () {
-                        var appointments = new AppointmentsView();
-                        appointments.onAppointmentsPopulate();
-                    });
+                    // $('#id_for_main').load('appointments.html', function () {
+                    //     var appointments = new AppointmentsView();
+                    //     appointments.onAppointmentsPopulate();
+                    // });
+                    var userId = window.localStorage.getItem('userId');
+                    window.location.href = 'test.html?userId=' + userId;
+                    // window.location.href = 'test.html';
+                    var appointments = new AppointmentsView();
+                    appointments.onAppointmentsPopulate();
                 }
                 break;
             case 'bttn1':

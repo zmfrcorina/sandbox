@@ -3,12 +3,43 @@ AppointmentsView = function () {
 };
 AppointmentsView.prototype = {
   initComponents: function () {
+    $(document).ready(function() {
+      $("#date-picker").datepicker();
+
+      const availableHours = ['09:00', '10:00', '11:00', '12:00', '13:00', '15:00'];
+    
+      const timePicker = $('#time-picker');
+    
+      // Generate time slots
+      availableHours.forEach(function(hour) {
+        const option = $('<div>').text(hour);
+        option.addClass('available-time');
+        option.attr('data-time', hour);
+        timePicker.append(option);
+      });
+    
+      // Handle time selection
+      timePicker.on('click', '.available-time', function() {
+        const selectedTime = $(this).attr('data-time');
+        console.log('Selected time:', selectedTime);
+    
+        // Highlight selected time
+        timePicker.find('.available-time').removeClass('selected-time');
+        $(this).addClass('selected-time');
+      });
+    
+      // Set initial selected time
+      timePicker.find('.available-time').first().addClass('selected-time');
+    
+    });
+    
+    
     this.attachListeners();
     this.onAppointmentsPopulate();
   },
   attachListeners: function () {
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
-    $('#date').on('change', $.proxy(this.onDateChanged, this));
+    // $('#date').on('change', $.proxy(this.onDateChanged, this));
   },
   onAppointmentsPopulate: function () {
     var userName = window.localStorage.getItem('username');

@@ -40,7 +40,7 @@ namespace CabinetStomatologic.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUserByUsername(string username)
         {
-            IEnumerable<User> users = db.User.Where(pk => pk.UserNane == username);
+            IEnumerable<User> users = db.User.Where(pk => pk.UserNane == username).ToArray();
             if (users == null)
             {
                 return NotFound();

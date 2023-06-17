@@ -1,65 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doctor Pagina Programari</title>
-  <link rel="stylesheet" href="css/appointments.css">
-
+  <title>Pagina Programari</title>
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-  <style>
-    .calendar-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      margin-top: 10px;
-    }
-
-    .calendar {
-      background-color: #f8f9fa;
-      border: 1px solid #ced4da;
-      padding: 10px;
-      border-radius: 5px;
-      width: 300px;
-      /* Adjust the width to your desired value */
-    }
-
-    .calendar label {
-      margin-bottom: 5px;
-    }
-
-    .calendar .input-group {
-      margin-bottom: 10px;
-    }
-
-    .calendar select {
-      width: 100%;
-    }
-
-    /* Adjusted spacing for datepicker */
-    .datepicker {
-      display: block;
-      width: 100%;
-      padding: .375rem .75rem;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #495057;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #ced4da;
-      border-radius: .25rem;
-      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 </head>
-
 <body>
   <div class="container">
-
+    
     <div class="row">
       <div class="col-md-6">
         <form id="appointmentForm">
@@ -67,37 +16,36 @@
             <label for="name">Nume:</label>
             <input type="text" class="form-control" id="name" name="name" required>
           </div>
-
+          
           <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" name="email" required>
           </div>
-
+          
           <div class="form-group">
             <label for="phone">Numar de telefon:</label>
             <input type="tel" class="form-control" id="phone" name="phone" required>
           </div>
-
+          
           <div class="form-group">
             <label for="complaints">Mesajul dumneavoastra:</label>
             <textarea class="form-control" id="complaints" name="complaints" rows="4" required></textarea>
           </div>
-
+          
           <button type="button" id="submit_appointment_bttn" class="btn btn-primary">Creaza</button>
         </form>
       </div>
-
+      
       <div class="col-md-6">
-        <div class="calendar-container">
-          <div class="calendar">
-            <label for="date">Data:</label>
-            <div id="datepicker" class="input-group">
-              <input type="text" class="form-control" readonly>
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-              </div>
+        <div class="calendar">
+          <label for="date">Data:</label>
+          <div id="datepicker" class="input-group">
+            <input type="text" class="form-control" id="date" readonly>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fa fa-calendar"></i></span>
             </div>
           </div>
+          
           <label for="time">Ora:</label>
           <select class="form-control" id="time" name="time" required>
             <option value="">Select a time</option>
@@ -110,12 +58,12 @@
       </div>
     </div>
   </div>
-
+  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <script src="script.js"></script>
+  <script src="js/AppointmentsView.js"></script>
+  <script src="test.js"></script>
 </body>
-
 </html>

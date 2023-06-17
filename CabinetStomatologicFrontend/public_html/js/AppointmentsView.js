@@ -10,17 +10,9 @@ AppointmentsView.prototype = {
       ('0' + today.getDate()).slice(-2);
 
     this.attachListeners();
-    this.onAppointmentsPopulate();
+    this.onAppointmentsInit();
   },
-  onDateChanged: function (event) {
-
-    var selectedDate = event.date;
-    formattedDate = selectedDate.getFullYear() + '-' +
-      ('0' + (selectedDate.getMonth() + 1)).slice(-2) + '-' +
-      ('0' + selectedDate.getDate()).slice(-2);
-
-    console.log('Date changed:', formattedDate);
-
+  populateAppointments: function(){
     var timeDropdown = document.getElementById("time");
 
     // Clear children
@@ -42,6 +34,18 @@ AppointmentsView.prototype = {
       }
     });
   },
+  onDateChanged: function (event) {
+
+    document.getElementById("status-header").innerHTML = "";
+
+    var selectedDate = event.date;
+    formattedDate = selectedDate.getFullYear() + '-' +
+      ('0' + (selectedDate.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + selectedDate.getDate()).slice(-2);
+
+    console.log('Date changed:', formattedDate);
+    this.populateAppointments();
+  },
 
   attachListeners: function () {
     var self = this;
@@ -59,7 +63,7 @@ AppointmentsView.prototype = {
       });
     });
   },
-  onAppointmentsPopulate: function () {
+  onAppointmentsInit: function () {
     var userName = window.localStorage.getItem('username');
     if (userName == null) {
       document.getElementById("name").value = "";
@@ -86,6 +90,7 @@ AppointmentsView.prototype = {
         timeDropdown.removeChild(timeDropdown.firstChild);
       }
     }
+    this.populateAppointments();
   },
 
   onSubmitButton: function () {
@@ -129,7 +134,8 @@ AppointmentsView.prototype = {
         success: function () {
           console.log('appointment updated successfully');
           document.getElementById("status-header").innerHTML = "Programare facută cu succes!";
-          self.onAppointmentsPopulate();
+          self.onAppointmentsInit();
+          self.populateAppointments();
         },
         error: function () {
           console.log('error updating appointment');

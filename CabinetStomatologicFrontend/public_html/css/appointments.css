@@ -1,60 +1,66 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  main {
-    margin: 20px;
-  }
-  
-  h1 {
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-    margin: 20px 0;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  background: url("../Photos/services-background-image1.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
 
-  form {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="date"],
-  input[type="time"],
-  textarea {
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 100%;
-  }
-  
-  input[type="submit"] {
-    background-color: #06a82b;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 10px 20px;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #035f18;
-  }
-  
-  footer {
-    background-color: #ccc;
-    color: #666;
-    padding: 20px;
-    text-align: center;
-  }
-  
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: #06a82b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #035f18;
+}
+
+footer {
+  background-color: #ccc;
+  color: #666;
+  padding: 20px;
+  text-align: center;
+}

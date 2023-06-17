@@ -50,6 +50,11 @@ AppointmentsView.prototype = {
   attachListeners: function () {
     var self = this;
     $('#submit_appointment_bttn').on('click', $.proxy(this.onSubmitButton, this));
+
+    $('#time').on('change', function () {
+      self.onTimeChanged(); 
+    });
+
     $(document).ready(function () {
       var datePickerContainer = $('#datePickerContainer');
 
@@ -58,11 +63,16 @@ AppointmentsView.prototype = {
         startDate: 'today',
         autoclose: true,
         todayHighlight: true
-      }).on('changeDate', (event) => { // Use an arrow function to maintain the context
-        self.onDateChanged(event); // Call the method using the stored reference
+      }).on('changeDate', (event) => { 
+        self.onDateChanged(event); 
       });
     });
   },
+
+  onTimeChanged: function () {
+    document.getElementById("status-header").innerHTML = "";
+  },
+
   onAppointmentsInit: function () {
     var userName = window.localStorage.getItem('username');
     if (userName == null) {

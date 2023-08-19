@@ -25,16 +25,21 @@ namespace CabinetStomatologic.Controllers
         [HttpGet]
         [ResponseType(typeof(Appointment))]
         [Route("api/appointments/{date}")]
-        public IHttpActionResult GetAppointmentsOnDate(DateTime date)
+        public IHttpActionResult GetAppointmentsOnDate(DateTime date, [FromUri] string appointmentType = null)
         {
-            IEnumerable<Appointment> appointmnets = db.Appointment.Include(a => a.User).Where(it => it.Date == date).ToArray();
-            
-            if (appointmnets == null)
+            IEnumerable<Appointment> appointments = db.Appointment.Include(a => a.User).Where(it => it.Date == date).ToArray();
+
+            if (appointments == null)
             {
                 return NotFound();
             }
 
-            return Ok(appointmnets);
+            if (appointmentType != "toate")
+            {
+                appointments = appointments.Where(it => it.AppointmentType.Equals(appointmentType));
+            }
+
+            return Ok(appointments);
         }
 
         [HttpOptions]

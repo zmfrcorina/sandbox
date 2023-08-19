@@ -22,13 +22,18 @@ AdminView.prototype = {
         dateInput.value = formattedDate;
     },
     onSubmitButton: function () {
+        const appointmentType = $('#appointmentType').val();
+
+        // Construct the URL including the query parameter for appointmentType
+        const url = `http://localhost:57312/api/appointments/${$('#date').val()}?appointmentType=${appointmentType}`;
+
         $.ajax({
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             type: 'GET',
-            url: "http://localhost:57312/api/appointments/" + $('#date').val(),
+            url: url,
             async: false,
             dataType: 'json',
             success: function (data) {
@@ -59,6 +64,10 @@ AdminView.prototype = {
                     const messageCell = document.createElement('td');
                     messageCell.textContent = appointment.Message;
                     appointmentRow.appendChild(messageCell);
+
+                    const appointmentTypeCell = document.createElement('td');
+                    appointmentTypeCell.textContent = appointment.AppointmentType;
+                    appointmentRow.appendChild(appointmentTypeCell);
 
                     tableBody.appendChild(appointmentRow);
                 });

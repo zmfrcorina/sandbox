@@ -71,3 +71,7 @@ footer {
     text-align: center;
     padding: 1em;
 }
+
+select, select option {
+    color: black;
+}

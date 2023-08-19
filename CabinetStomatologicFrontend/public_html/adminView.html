@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Programari</title>
     <link rel="stylesheet" href="css/adminView.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <h1>Admin - Vizualizare programari</h1>
-      <form>
-        <label for="date">Data:</label>
-        <input type="date" id="date" name="date">
-        <button type="button" id="submit_date">Afiseaza</button>
-      </form>
+        <h1>Admin - Vizualizare programari</h1>
+        <form>
+            <label for="date">Data:</label>
+            <input type="date" id="date" name="date">
+
+            <!-- Optional: If you want to filter by appointment type -->
+            <label for="appointmentType">Tipul programarii:</label>
+            <select id="appointmentType" name="appointmentType">
+                <option value="toate">Toate</option>
+                <option value="consultatie">Consultatie</option>
+                <option value="control">Control</option>
+                <option value="urgenta">Urgenta</option>
+            </select>
+
+            <button type="button" id="submit_date">Afiseaza</button>
+        </form>
     </header>
     <main>
-      <table>
-        <thead>
-          <tr>
-            <th>Programare</th>
-            <th>Nume pacient</th>
-            <th>Email</th>
-            <th>Numar de telefon</th>
-            <th>Mesaj</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Programare</th>
+                    <th>Nume pacient</th>
+                    <th>Email</th>
+                    <th>Numar de telefon</th>
+                    <th>Mesaj</th>
+                    <th>Tipul programarii</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Actual appointment type data will be populated here dynamically for each record -->
+            </tbody>
+        </table>
     </main>
     <footer>
-      <p>&copy; 2023 DentalExperts</p>
+        <p>&copy; 2023 DentalExperts</p>
     </footer>
-  </body>
+</body>
+
 </html>

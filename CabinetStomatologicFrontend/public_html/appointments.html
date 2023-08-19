@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="css/appointments.css">
   <link rel="stylesheet" href="datepicker/bootstrap-datepicker.min.css">
 </head>
+
 <body>
   <div class="container">
     <div class="left-column">
@@ -28,6 +30,15 @@
           </div>
 
           <div class="form-column">
+            <label for="appointmentType">Tipul programarii:</label>
+            <select id="appointmentType" name="appointmentType" required>
+              <option value="consultatie">Consultatie</option>
+              <option value="control">Control</option>
+              <option value="urgenta">Urgenta</option>
+            </select>
+          </div>
+
+          <div class="form-column">
             <label for="message">Mesajul tau:</label>
             <textarea id="message" name="message"></textarea>
           </div>
@@ -42,7 +53,7 @@
 
     <div class="right-column">
       <div id="datePickerContainer"></div>
-      
+
       <div class="form-column">
         <label for="time">Ora:</label>
         <select id="time" name="time" required></select>
@@ -51,4 +62,5 @@
   </div>
   <script src="datepicker/bootstrap-datepicker.min.js"></script>
 </body>
+
 </html>

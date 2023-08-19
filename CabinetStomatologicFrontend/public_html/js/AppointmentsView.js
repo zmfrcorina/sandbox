@@ -122,13 +122,15 @@ AppointmentsView.prototype = {
     }
     var time = $('#time').val();
     var message = $('#message').val();
+    var appointmentType = $('#appointmentType').val();
 
     var obj = {
       'AppointmentId': 1,
       'UserId': userId,
       'Date': formattedDate,
       'Time': time,
-      'Message': message
+      'Message': message,
+      "AppointmentType": appointmentType
     };
     if (userId != "undefined") {
       var self = this;

@@ -5,24 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Programari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/adminView.css">
 </head>
 
 <body>
-    <header>
+    <header class="header-card">
         <h1>Admin - Vizualizare programari</h1>
         <form>
-            <label for="date">Data:</label>
-            <input type="date" id="date" name="date">
+            <div class="input-group">
+                <label for="date">Data:</label>
+                <input type="date" id="date" name="date">
+            </div>
 
-            <!-- Optional: If you want to filter by appointment type -->
-            <label for="appointmentType">Tipul programarii:</label>
-            <select id="appointmentType" name="appointmentType">
-                <option value="toate">Toate</option>
-                <option value="consultatie">Consultatie</option>
-                <option value="control">Control</option>
-                <option value="urgenta">Urgenta</option>
-            </select>
+            <div class="input-group">
+                <label for="appointmentType">Tipul programarii:</label>
+                <select id="appointmentType" name="appointmentType">
+                    <option value="toate">Toate</option>
+                    <option value="consultatie">Consultatie</option>
+                    <option value="control">Control</option>
+                    <option value="urgenta">Urgenta</option>
+                </select>
+            </div>
 
             <button type="button" id="submit_date">Afiseaza</button>
         </form>
@@ -44,9 +48,6 @@
             </tbody>
         </table>
     </main>
-    <footer>
-        <p>&copy; 2023 DentalExperts</p>
-    </footer>
 </body>
 
 </html>

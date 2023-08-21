@@ -1,31 +1,44 @@
 AdminView = function () {
     this.initComponents();
 };
+
 AdminView.prototype = {
+    currentPage: 1,
+    totalPages: 0,
+
     initComponents: function () {
         this.attachListeners();
         this.onAdminPopulate();
+        this.setupPagination();
     },
     attachListeners: function () {
         $('#submit_date').on('click', $.proxy(this.onSubmitButton, this));
+        $('#prev-page').on('click', $.proxy(this.prevPage, this));
+        $('#next-page').on('click', $.proxy(this.nextPage, this));
     },
     onAdminPopulate: function () {
         const dateInput = document.getElementById('date');
-
-        // Get today's date.
         const today = new Date();
-
-        // Format the date as YYYY-MM-DD.
         const formattedDate = today.toISOString().split('T')[0];
-
-        // Set the default value of the date input.
         dateInput.value = formattedDate;
+
+        this.onSubmitButton();
+    },
+    setupPagination: function () {
+        $('#current-page').text(this.currentPage);
+        $('#prev-page').prop('disabled', true);
+        $('#next-page').prop('disabled', true);
+        $('#total-pages').text("1");
     },
     onSubmitButton: function () {
+        this.currentPage = 1;
+        this.populateAppointmentsByPage();
+    },
+    populateAppointmentsByPage: function()
+    {
         const appointmentType = $('#appointmentType').val();
-
-        // Construct the URL including the query parameter for appointmentType
-        const url = `http://localhost:57312/api/appointments/${$('#date').val()}?appointmentType=${appointmentType}`;
+        
+        const url = `http://localhost:57312/api/appointments/${$('#date').val()}?appointmentType=${appointmentType}&page=${this.currentPage}`;
 
         $.ajax({
             headers: {
@@ -36,12 +49,13 @@ AdminView.prototype = {
             url: url,
             async: false,
             dataType: 'json',
-            success: function (data) {
+            success: function (response) {
                 // Clear the table body.
                 const tableBody = document.querySelector('tbody');
                 tableBody.innerHTML = '';
 
-                // Iterate over the data and populate the table rows.
+                const data = response.appointments;
+
                 data.forEach(function (appointment) {
                     const appointmentRow = document.createElement('tr');
 
@@ -71,10 +85,39 @@ AdminView.prototype = {
 
                     tableBody.appendChild(appointmentRow);
                 });
-            },
+
+                // Update pagination controls
+                this.totalPages = response.totalPages;  // Assuming your API response provides totalPages.
+                this.updatePaginationControls();
+            }.bind(this),
             error: function () {
                 console.log('Error retrieving appointments data.');
             }
         });
+    },
+    updatePaginationControls: function () {
+        $('#current-page').text(this.currentPage);
+    
+        // If there are no pages (i.e., no appointments), display "1 din 1"
+        if (this.totalPages === 0) {
+            $('#total-pages').text("1");
+        } else {
+            $('#total-pages').text(this.totalPages);
+        }
+    
+        $('#prev-page').prop('disabled', this.currentPage === 1);
+        $('#next-page').prop('disabled', this.currentPage >= this.totalPages);
+    },
+    prevPage: function () {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.populateAppointmentsByPage(); // Reload data for the previous page.
+        }
+    },
+    nextPage: function () {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+            this.populateAppointmentsByPage(); // Reload data for the next page.
+        }
     }
 }

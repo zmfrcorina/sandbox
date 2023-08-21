@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -25,11 +26,18 @@ namespace CabinetStomatologic.Controllers
         [HttpGet]
         [ResponseType(typeof(Appointment))]
         [Route("api/appointments/{date}")]
-        public IHttpActionResult GetAppointmentsOnDate(DateTime date, [FromUri] string appointmentType = null)
+        public IHttpActionResult GetAppointmentsOnDate(DateTime date, [FromUri] string appointmentType = null, [FromUri] int page = 1)
         {
-            IEnumerable<Appointment> appointments = db.Appointment.Include(a => a.User).Where(it => it.Date == date).ToArray();
+            int pageSize = 3; // This defines 3 appointments per page.
 
-            if (appointments == null)
+            // Fetch appointments based on the date.
+            IEnumerable<Appointment> appointments = db.Appointment
+                .Include(a => a.User)
+                .Where(it => it.Date.Year == date.Year && it.Date.Month == date.Month && it.Date.Day == date.Day)
+                .OrderBy(it => it.Date.Hour)
+                .ToArray();
+
+            if (!appointments.Any())
             {
                 return NotFound();
             }
@@ -39,7 +47,21 @@ namespace CabinetStomatologic.Controllers
                 appointments = appointments.Where(it => it.AppointmentType.Equals(appointmentType));
             }
 
-            return Ok(appointments);
+            // Calculate the total number of pages.
+            int totalRecords = appointments.Count();
+            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+            // Apply pagination.
+            appointments = appointments.Skip((page - 1) * pageSize).Take(pageSize);
+
+            // Return the paginated results along with total pages information.
+            var result = new
+            {
+                appointments = appointments.ToList(),
+                totalPages = totalPages
+            };
+
+            return Ok(result);
         }
 
         [HttpOptions]
@@ -53,11 +75,11 @@ namespace CabinetStomatologic.Controllers
         [Route("api/freeAppointments/{date}")]
         public IHttpActionResult GetFreeAppointments(DateTime date)
         {
-            IEnumerable<Appointment> appointmnets = db.Appointment.Where(it => it.Date == date).ToArray();
-            var usedHours = appointmnets.Select(q => q.Time).ToArray();
+            IEnumerable<Appointment> appointments = db.Appointment.Where(it => it.Date.Year == date.Year && it.Date.Month == date.Month && it.Date.Day == date.Day).ToArray();
+            var usedHours = appointments.Select(q => q.Time).ToArray();
             var freeHours = timeSlots.Except(usedHours).ToArray();
 
-            if (appointmnets == null)
+            if (appointments == null)
             {
                 return NotFound();
             }
@@ -137,6 +159,21 @@ namespace CabinetStomatologic.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            DateTime timeObj;
+
+            if (DateTime.TryParseExact(appointment.Time, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeObj))
+            {
+                Console.WriteLine(timeObj.TimeOfDay);  // Will display 09:00:00
+            }
+
+            appointment.Date = new DateTime(
+                appointment.Date.Year,
+                appointment.Date.Month,
+                appointment.Date.Day,
+                timeObj.Hour,
+                timeObj.Minute,
+                timeObj.Second);
 
             db.Appointment.Add(appointment);
             try

@@ -28,6 +28,7 @@ AdminView.prototype = {
         $('#current-page').text(this.currentPage);
         $('#prev-page').prop('disabled', true);
         $('#next-page').prop('disabled', true);
+        $('#total-pages').text("1");
     },
     onSubmitButton: function () {
         this.currentPage = 1;
@@ -96,7 +97,14 @@ AdminView.prototype = {
     },
     updatePaginationControls: function () {
         $('#current-page').text(this.currentPage);
-        $('#total-pages').text(this.totalPages);
+    
+        // If there are no pages (i.e., no appointments), display "1 din 1"
+        if (this.totalPages === 0) {
+            $('#total-pages').text("1");
+        } else {
+            $('#total-pages').text(this.totalPages);
+        }
+    
         $('#prev-page').prop('disabled', this.currentPage === 1);
         $('#next-page').prop('disabled', this.currentPage >= this.totalPages);
     },

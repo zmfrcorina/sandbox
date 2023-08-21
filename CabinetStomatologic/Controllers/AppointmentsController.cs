@@ -37,11 +37,6 @@ namespace CabinetStomatologic.Controllers
                 .OrderBy(it => it.Date.Hour)
                 .ToArray();
 
-            if (!appointments.Any())
-            {
-                return NotFound();
-            }
-
             if (appointmentType != "toate")
             {
                 appointments = appointments.Where(it => it.AppointmentType.Equals(appointmentType));
